@@ -1,0 +1,11 @@
+#!/bin/sh
+
+APPID=`basename $0`
+APPNAME="VisualBoy Advance"
+
+source `dirname $0`/srf.app.info
+
+DIRECTORY="sav"
+source `dirname $0`/srf.app.directory
+
+exit 0

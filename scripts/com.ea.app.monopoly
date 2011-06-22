@@ -1,0 +1,13 @@
+#!/bin/sh
+
+APPID=`basename $0`
+APPNAME="Monopoly"
+
+source `dirname $0`/srf.app.info
+
+SRCDIR="$APPDIR/monopolyclassic/save"
+FILES="*"
+
+source `dirname $0`/srf.app.files
+
+exit 0

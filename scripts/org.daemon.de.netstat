@@ -1,0 +1,15 @@
+#!/bin/sh
+
+APPID=`basename $0`
+APPNAME="Netstat"
+
+source `dirname $0`/srf.app.info
+
+source `dirname $0`/srf.app.databases
+
+SRCDIR="$APPSTORE/$ORIGIN"
+FILES="0000000000000001.db"
+
+source `dirname $0`/srf.app.files
+
+exit 0

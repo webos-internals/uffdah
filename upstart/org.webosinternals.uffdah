@@ -1,0 +1,7 @@
+description "Uffdah Service"
+
+start on stopped finish
+
+exec /var/usr/sbin/org.webosinternals.uffdah
+
+respawn

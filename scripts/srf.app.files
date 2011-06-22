@@ -1,0 +1,80 @@
+#!/bin/sh
+
+[ -n "${APPID}" ]  || { echo "srf.app.files: APPID not defined"  ; exit 1 ; }
+[ -n "${APPDIR}" ] || { echo "srf.app.files: APPDIR not defined" ; exit 1 ; }
+[ -n "${DSTDIR}" ] || { echo "srf.app.files: DSTDIR not defined" ; exit 1 ; }
+[ -n "${SRCDIR}" ] || { echo "srf.app.files: SRCDIR not defined" ; exit 1 ; }
+[ -n "${FILES}" ]  || { echo "srf.app.files: FILES not defined"  ; exit 1 ; }
+
+# By default the referenced files must exist
+: ${OPTIONAL:="false"} 
+
+if [ -n "${DSTSUB}" ] ; then
+    DSTPATH=${DSTDIR}/${DSTSUB}
+else
+    DSTPATH=${DSTDIR}
+fi
+
+[ -d "${APPDIR}" ] || { echo "${APPID} not installed" ; exit 0 ; }
+
+[ -d "${SRCDIR}" ] || { mkdir -p ${SRCDIR} ; }
+
+if [ "$1" == "save" ] ; then
+
+    [ -d "${SRCDIR}" ] || \
+	{ [ "${OPTIONAL}" == "true" ] && return 0 ; } || \
+	{ echo "${SRCDIR} not found" ; exit 1 ; }
+
+    for file in `cd ${SRCDIR} ; ls -1d ${FILES} 2>/dev/null` ; do
+	[ -f "${SRCDIR}/$file" ] || \
+	    [ "${OPTIONAL}" == "true" ] || \
+	    { echo "${SRCDIR}/$file not found" ; exit 1 ; }
+    done
+
+    mkdir -p ${DSTPATH}
+
+    for file in `cd ${SRCDIR} ; ls -1d ${FILES} 2>/dev/null` ; do
+	if [ -f "${SRCDIR}/$file" ] ; then
+	    cp ${SRCDIR}/$file ${DSTPATH}/$file
+	    if [ -n "${DSTSUB}" ] ; then
+		( cd ${DSTDIR} ; ls -1d ${DSTSUB}/$file )
+		( cd ${DSTDIR} ; ${ZIP} -q ${DSTDIR}.zip ${DSTSUB}/$file )
+	    else
+		( cd ${DSTDIR} ; ls -1d $file )
+		( cd ${DSTDIR} ; ${ZIP} -q ${DSTDIR}.zip $file )
+	    fi
+	fi
+    done
+
+    rm -rf ${DSTDIR}
+
+elif [ "$1" == "restore" ] ; then
+
+    mkdir -p ${DSTDIR}
+
+    if [ -n "${DSTSUB}" ] ; then
+	( cd ${DSTDIR} ; ${UNZIP} -q -o ${DSTDIR}.zip ${DSTSUB}/* )
+    else
+	( cd ${DSTDIR} ; ${UNZIP} -q -o ${DSTDIR}.zip ${FILES} )
+    fi
+
+    [ -d "${DSTPATH}" ] || \
+	{ [ "${OPTIONAL}" == "true" ] && { rm -rf ${DSTDIR} ; return 0 ; } ; } || \
+	{ echo "${DSTPATH} not found" ; rm -rf ${DSTDIR} ; exit 1 ; }
+
+    for file in `cd ${DSTPATH} ; ls -1d ${FILES} 2>/dev/null` ; do
+	[ -f "${DSTPATH}/$file" ] || \
+	    [ "${OPTIONAL}" == "true" ] || \
+	    { echo "${DSTPATH}/$file not found" ; rm -rf ${DSTDIR} ; exit 1 ; }
+    done
+
+    for file in `cd ${DSTPATH} ; ls -1d ${FILES} 2>/dev/null` ; do
+	if [ -f "${DSTPATH}/$file" ] ; then
+	    cp ${DSTPATH}/$file ${SRCDIR}/$file
+	    ( cd ${SRCDIR} ; ls -1d $file )
+	fi
+    done
+
+    rm -rf ${DSTDIR}
+
+fi

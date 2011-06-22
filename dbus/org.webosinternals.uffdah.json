@@ -1,0 +1,14 @@
+{
+  "role": {
+     "exeName":"/var/usr/sbin/org.webosinternals.uffdah",
+     "type": "regular",
+     "allowedNames": ["org.webosinternals.uffdah"]
+  },
+  "permissions": [
+    {
+      "service":"org.webosinternals.uffdah",
+      "inbound":["*"],
+      "outbound":["*"]
+    }
+  ]
+}

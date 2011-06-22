@@ -1,0 +1,74 @@
+#!/bin/sh
+
+[ -n "$APPID" ]  || { echo "srf.app.databases: APPID not defined"  ; exit 1 ; }
+[ -n "$APPDIR" ] || { echo "srf.app.databases: APPDIR not defined" ; exit 1 ; }
+[ -n "$DSTDIR" ] || { echo "srf.app.databases: DSTDIR not defined" ; exit 1 ; }
+
+[ -d $APPDIR ] || { echo "$APPID not installed" ; exit 0 ; }
+
+if [ -f /var/home/root/html5-databases/Databases.db ] ; then
+DBSTORE=/var/home/root/html5-databases
+else
+DBSTORE=/var/palm/data
+fi
+PALMDB=$DBSTORE/Databases.db
+
+APPSTORE=/media/internal/.app-storage
+
+ORIGIN=`sqlite3 $PALMDB "SELECT origin FROM Origins WHERE origin LIKE \"%${APPID}_0\""`
+[ -n "$ORIGIN" ] || exit 1
+
+DATABASES=`sqlite3 $PALMDB "SELECT name FROM Databases WHERE origin = \"$ORIGIN\""`
+[ -n "$DATABASES" ] || exit 1
+
+OIFS=$IFS
+IFS=$'\n'
+
+if [ "$1" == "save" ] ; then
+
+    mkdir -p $DSTDIR
+
+    for db in $DATABASES ; do
+	FILE=`sqlite3 $PALMDB "SELECT path FROM Databases WHERE origin = \"$ORIGIN\" AND name = \"$db\""`
+	if expr "$db" : "ext:.*" >/dev/null ; then
+	    LOC=$APPSTORE/$ORIGIN/$FILE
+	    APPID=ext-`expr "$db" : "ext:\(.*\)"`
+	else
+	    LOC=$DBSTORE/$ORIGIN/$FILE
+	    APPID=$db
+	fi
+	cp $LOC $DSTDIR/$APPID
+	( cd $DSTDIR ; ls -1 $APPID )
+	( cd $DSTDIR ; ${ZIP} -q ${DSTDIR}.zip $APPID )
+    done
+
+    rm -rf $DSTDIR
+
+elif [ "$1" == "restore" ] ; then
+
+    mkdir -p $DSTDIR
+
+    for db in $DATABASES ; do
+	FILE=`sqlite3 $PALMDB "SELECT path FROM Databases WHERE origin = \"$ORIGIN\" AND name = \"$db\""`
+	if expr "$db" : "ext:.*" >/dev/null ; then
+	    LOC=$APPSTORE/$ORIGIN
+	    APPID=ext-`expr "$db" : "ext:\(.*\)"`
+	else
+	    LOC=$DBSTORE/$ORIGIN
+	    APPID=$db
+	fi
+
+	( cd $DSTDIR ; ${UNZIP} -q -o ${DSTDIR}.zip $APPID )
+
+	[ -f $DSTDIR/$APPID ] || { echo "$DSTDIR/$APPID not found" ; rm -rf $DSTDIR ; exit 1 ; }
+
+	cp $DSTDIR/$APPID $LOC/$FILE
+
+	( cd $LOC ; ls -1 $FILE )
+    done
+
+    rm -rf $DSTDIR
+
+fi
+
+IFS=$OIFS

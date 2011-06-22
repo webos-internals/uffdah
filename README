@@ -1,0 +1,12 @@
+UFFDAH(Universal Foreign File and Disk Access Helper)
+
+uffdah is an application to manage usb-disks/flash attached to the USB OTG port (if supported) as well as networked fileservers like windows, mac and linux.
+
+the UI will enable creating connections to remote fileservers with login/password/path information stored in a db.
+
+USB attached FS will be discovered via USB Gadget and partitions listed with partition type and mount location preferences
+
+All FS will be mounted off the /media/external tree.
+
+
+

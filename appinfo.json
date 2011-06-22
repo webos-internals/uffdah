@@ -1,0 +1,15 @@
+{
+	"title": "Uffdah",
+	"id": "org.webosinternals.uffdah",
+	"version": "1.4.4",
+	"release_date":	"17-Jun-2011",
+	"vendor": "WebOS Internals",
+	"vendor_email":	"support@webos-internals.org",
+	"vendor_url": "http://www.webos-internals.org/wiki/Application:Uffdah",
+	"type": "web",
+	"main": "index.html",
+	"icon": "icon.png",
+	"removable": "true",
+	"noWindow": true,
+	"noDeprecatedStyles" : true 
+}

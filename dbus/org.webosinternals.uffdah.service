@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.webosinternals.uffdah
+Exec=/var/usr/sbin/org.webosinternals.uffdah

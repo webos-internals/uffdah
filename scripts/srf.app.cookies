@@ -1,0 +1,44 @@
+#!/bin/sh
+
+[ -n "$APPID" ]  || { echo "srf.app.cookies: APPID not defined"  ; exit 1 ; }
+[ -n "$APPDIR" ] || { echo "srf.app.cookies: APPDIR not defined" ; exit 1 ; }
+[ -n "$DSTDIR" ] || { echo "srf.app.cookies: DSTDIR not defined" ; exit 1 ; }
+
+FIELDS="domain_head,domain_tail,path,name,value,expires,secure"
+
+[ -d $APPDIR ] || { echo "$APPID not installed" ; exit 0 ; }
+
+PALMDB=/var/palm/data/cookies.db
+FILE=cookies.sql
+
+if [ "$1" == "save" ] ; then
+
+    mkdir -p ${DSTDIR}
+
+    sqlite3 $PALMDB > $DSTDIR/$FILE <<EOF
+.mode insert Cookies ;
+SELECT $FIELDS FROM Cookies WHERE path like "$APPDIR" ;
+.quit ;
+EOF
+
+    ( cd $DSTDIR ; ls -1 $FILE )
+
+    ( cd $DSTDIR ; ${ZIP} -q ${DSTDIR}.zip $FILE )
+
+    rm -rf $DSTDIR
+
+elif [ "$1" == "restore" ] ; then
+
+    mkdir -p $DSTDIR
+
+    ( cd $DSTDIR ; ${UNZIP} -q -o ${DSTDIR}.zip $FILE )
+
+    [ -f $DSTDIR/$FILE ] || { echo "$DSTDIR/$FILE not found" ; rm -rf $DSTDIR ; exit 1 ; }
+
+    sqlite3 $PALMDB < $DSTDIR/$FILE
+
+    ( cd $DSTDIR ; ls -1 $FILE )
+
+    rm -rf $DSTDIR
+
+fi

@@ -1,0 +1,51 @@
+#!/bin/sh
+
+APPID=`basename $0`
+APPNAME="Launcher"
+APPDIR="/var/palm"
+APPNOTE="Luna Restart required after restore"
+
+source `dirname $0`/srf.app.info
+
+SRCDIR="/var/palm"
+DSTSUB="user-dock"
+FILES="user-dock-positions.json"
+OPTIONAL=false
+
+source `dirname $0`/srf.app.files
+
+SRCDIR="/var/luna/launchpoints"
+DSTSUB="launchpoints"
+FILES="*"
+OPTIONAL=true
+
+source `dirname $0`/srf.app.files
+
+SRCDIR="/var/luna/data/browser/icons"
+DSTSUB="icons"
+FILES="*.png"
+OPTIONAL=true
+
+source `dirname $0`/srf.app.files
+
+if `webos_version_lt 2.0.0` ; then
+    
+    APPID="luna-applauncher"
+    OPTIONAL=false
+    
+    source `dirname $0`/srf.app.databases
+
+fi
+
+if `webos_version_ge 2.0.0` ; then
+
+	SRCDIR="/var/luna/preferences"
+	DSTSUB="launcher"
+	FILES="launcher-cards.json"
+	OPTIONAL=false
+
+	source `dirname $0`/srf.app.files
+
+fi
+
+exit 0

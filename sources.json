@@ -1,0 +1,43 @@
+[
+    {"source": "app/models/Applications.js"},
+    {"source": "app/models/UffdahService.js"},
+    {"source": "app/models/functions.js"},
+    {"source": "app/models/cookies.js"},
+    {"source": "app/assistants/app-assistant.js"},
+    {
+        "scenes": "startup",
+        "source": "app/assistants/startup-assistant.js"
+    },
+    {
+        "scenes": "main",
+        "source": "app/assistants/main-assistant.js"
+    },
+    {
+        "scenes": "save",
+        "source": "app/assistants/save-assistant.js"
+    },
+    {
+        "scenes": "restore",
+        "source": "app/assistants/restore-assistant.js"
+    },
+    {
+        "scenes": "list",
+        "source": "app/assistants/list-assistant.js"
+    },
+    {
+        "scenes": "installed",
+        "source": "app/assistants/installed-assistant.js"
+    },
+    {
+        "scenes": "preferences",
+        "source": "app/assistants/preferences-assistant.js"
+    },
+    {
+        "scenes": "help",
+        "source": "app/assistants/help-assistant.js"
+    },
+	{
+		"scenes": "autosave",
+		"source": "app/assistants/autosave-assistant.js"
+	}
+]
