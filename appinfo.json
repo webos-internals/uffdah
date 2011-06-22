@@ -1,8 +1,8 @@
 {
-	"title": "Uffdah",
+	"title": "UFFDAH",
 	"id": "org.webosinternals.uffdah",
-	"version": "1.4.4",
-	"release_date":	"17-Jun-2011",
+	"version": "0.0.2",
+	"release_date":	"21-Jun-2011",
 	"vendor": "WebOS Internals",
 	"vendor_email":	"support@webos-internals.org",
 	"vendor_url": "http://www.webos-internals.org/wiki/Application:Uffdah",

@@ -76,11 +76,11 @@ PreferencesAssistant.prototype.setup = function()
 	// hide secret group
 	this.controller.get('secretPreferences').style.display = 'none';
 		
-	this.controller.setupWidget("autoSave", {"label":$L("Auto Save"),"modelProperty":"autoSave"}, this.prefs);
+	/*this.controller.setupWidget("autoSave", {"label":$L("Auto Save"),"modelProperty":"autoSave"}, this.prefs);
 	this.controller.setupWidget("autoSaveDrawer", {"unstyled":true}, {open:(this.prefs.autoSave === true)});
 	this.controller.setupWidget("autoSaveTime", {"label":$L("At"),"modelProperty":"autoSaveTime"}, this.prefs);
 	this.controller.setupWidget("autoSaveFrequency", {"label":$L("Every N Days"),"modelProperty":"autoSaveFrequency","min":0,"max":30}, this.prefs);
-		
+	*/	
     }
     catch (e) {
 	Mojo.Log.logException(e, 'preferences#setup');

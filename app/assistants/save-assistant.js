@@ -28,7 +28,7 @@ function SaveAssistant() {
 SaveAssistant.prototype.setup = function() {
 
     this.titleElement = this.controller.get('listTitle');
-    this.titleElement.innerHTML = $L("Save Application Data");
+    this.titleElement.innerHTML = $L("Test Scene1");
 
     // setup menu
     this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
@@ -41,7 +41,7 @@ SaveAssistant.prototype.setup = function() {
 	
     // new buttons
     this.buttonsAttributes = { spacerHeight: 50, menuClass: 'no-fade' };
-    this.buttonsModel = {
+    /*this.buttonsModel = {
 	visible: true,
 	items: [
     { },
@@ -49,7 +49,7 @@ SaveAssistant.prototype.setup = function() {
     { label: $L("Save Selected"), command: "doSave" },
     { }
 		]
-    }
+    }*/
     this.controller.setupWidget( Mojo.Menu.commandMenu, this.buttonsAttributes, this.buttonsModel );
 
 

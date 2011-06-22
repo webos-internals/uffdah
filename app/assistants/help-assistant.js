@@ -20,7 +20,7 @@ HelpAssistant.prototype.setup = function()
 	
 	this.supportModel.items.push({
 		text: $L('Wiki Page'),
-		detail: 'http://www.webos-internals.org/wiki/Application:SaveRestore',
+		detail: 'http://www.webos-internals.org/wiki/Application:Uffdah',
 		Class: 'img_web',
 		type: 'web'
 	});

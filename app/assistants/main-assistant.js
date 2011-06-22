@@ -23,6 +23,7 @@ function MainAssistant() {
 	label: $L("Preferences"),
 	command: 'do-prefs'
     },
+
     {
 	label: $L("Help"),
 	command: 'do-help'
@@ -62,12 +63,12 @@ MainAssistant.prototype.setup = function() {
     this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
 	
     this.mainModel.items.push({
-	    name:     $L('Save Application Data'),
-		style:    'disabled',
+	    name:     $L('Scene1'),
+		style:    'enabled',
 		scene:    'save',
-		pkgCount: appDB.appsAvailable.length
+		//pkgCount: appDB.appsAvailable.length
 		});
-    this.mainModel.items.push({
+  /*  this.mainModel.items.push({
 	    name:     $L('Restore Application Data'),
 		style:    'disabled',
 		scene:    'restore',
@@ -84,7 +85,7 @@ MainAssistant.prototype.setup = function() {
 		style:    'disabled',
 		scene:    'installed',
 		pkgCount: appDB.appsInstalled.length
-		});
+		});*/
     
     // setup widget
     this.controller.setupWidget('mainList', { itemTemplate: "main/rowTemplate", swipeToDelete: false, reorderable: false }, this.mainModel);
@@ -166,22 +167,23 @@ MainAssistant.prototype.handleCommand = function(event)
 			case 'do-help':
 				this.controller.stageController.pushScene('help');
 				break;
+
 		}
 	}
 }
 
 MainAssistant.prototype.activate = function(event) {
     if (appDB.reload) {
-	for (var i = 0; i < this.mainModel.items.length; i++) {
+	for (var i = 0; i = this.mainModel.items.length; i++) {
 	    this.mainModel.items[i].style = 'disabled';
 	    this.mainModel.items[i].pkgCount = 0;
 	}
 	this.listElement.mojo.noticeUpdatedItems(0, this.mainModel.items);
-	var appController = Mojo.Controller.getAppController();
+	/*var appController = Mojo.Controller.getAppController();
 	appController.showBanner({ messageText: $L("Loading archive data ...") }, {}, "initApps");
 	this.overlay.show();
 	this.spinner.mojo.start();
-	appDB.initApps(this.updateList.bind(this));
+	appDB.initApps(this.updateList.bind(this));*/
     }
 };
 
