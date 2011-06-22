@@ -12,7 +12,8 @@ function StartupAssistant(changelog)
 	[
 	 // Don't forget the comma on all but the last entry
 	 { version: '0.0.1', log: ['Initial Skeleton based on Save/Restore', ] },
-	 { version: '0.0.2', log: ['Fixed CSS bug and Icon bug', ] }	 
+	 { version: '0.0.2', log: ['Fixed CSS bug and Icon bug', ] },
+	 { version: '0.0.3', log: ['Installed a add storage menu', ]}	 
 	];
 	
     // setup menu

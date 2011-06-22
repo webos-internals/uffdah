@@ -24,14 +24,16 @@ function MainAssistant() {
 	command: 'do-prefs'
     },
 
+			{
+				label: $L("Manage Storage"),
+				command: 'do-feeds'
+			},
+
     {
 	label: $L("Help"),
 	command: 'do-help'
     },
-    {
-	label: $L("Add Storage"),
-	command: 'do-feeds'
-    }
+
 	 ]
     };
 }
@@ -171,10 +173,10 @@ MainAssistant.prototype.handleCommand = function(event)
 			case 'do-help':
 				this.controller.stageController.pushScene('help');
 				break;
-case 'do-feeds':
+			case 'do-feeds':
 				this.controller.stageController.pushScene('configs');
 				break;
-	
+
 
 		}
 	}
