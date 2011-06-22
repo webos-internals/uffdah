@@ -36,10 +36,10 @@
         "scenes": "help",
         "source": "app/assistants/help-assistant.js"
     },
-{
-   "scenes": "configs",
-   "source": "app/assistants/configs-assistant.js",
-},
+    {
+	"scenes": "configs",
+	"source": "app/assistants/configs-assistant.js",
+    },
 	{
 		"scenes": "autosave",
 		"source": "app/assistants/autosave-assistant.js"

@@ -24,12 +24,12 @@ function ConfigsAssistant()
 ConfigsAssistant.prototype.setup = function()
 {
 	this.controller.get('headerButton').innerHTML = $L("Preferences");
-	this.controller.get('headerTitle').innerHTML = $L("Feeds");		
+	this.controller.get('headerTitle').innerHTML = $L("Storage IP");		
 	this.controller.get('installed-feeds-title').innerHTML = $L("Installed");	
-	this.controller.get('new-feed-title').innerHTML = $L("New Feed");
+	this.controller.get('new-feed-title').innerHTML = $L("New Storage");
 	this.controller.get('new-feed-name').innerHTML = $L("Name");
 	this.controller.get('new-feed-url').innerHTML = $L("URL");	
-	this.controller.get('new-feed-is-compressed').innerHTML = $L("Is Compressed");	
+	//this.controller.get('new-feed-is-compressed').innerHTML = $L("Is Compressed");	
 	
 	// setup menu
 	this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
@@ -98,7 +98,7 @@ ConfigsAssistant.prototype.setup = function()
 			type: Mojo.Widget.activityButton
 		},
 		{
-			buttonLabel: $L("Add Feed"),
+			buttonLabel: $L("Add Storage"),
 			buttonClass: 'palm-button'
 		}
 	);
@@ -131,7 +131,7 @@ ConfigsAssistant.prototype.onFeeds = function(payload)
 	try 
 	{
 		if (!payload) 
-		{
+		{/*
 			// i dont know if this will ever happen, but hey, it might
 			this.alertMessage('Preware', $L("Cannot access the service. First try restarting Preware, or reboot your phone and try again."));
 			this.doneLoading();
@@ -205,7 +205,7 @@ ConfigsAssistant.prototype.onFeeds = function(payload)
 	{
 		Mojo.Log.logException(e, 'configs#onFeeds');
 		this.alertMessage('onFeeds Error', e);
-	}
+	}*/
 };
 ConfigsAssistant.prototype.doneLoading = function()
 {
@@ -302,7 +302,7 @@ ConfigsAssistant.prototype.newConfButton = function()
 			{
 			    title:				$L("Custom Feed"),
 				allowHTMLMessage:	true,
-			    message:			$L("By adding a custom feed, you take full responsibility for any and all potential outcomes that may occur as a result of doing so, including (but not limited to): loss of warranty, loss of all data, loss of all privacy, security vulnerabilities and device damage."),
+			    message:			$L("By adding a custom storae device, you take full responsibility for any and all potential outcomes that may occur as a result of doing so, including (but not limited to): loss of warranty, loss of all data, loss of all privacy, security vulnerabilities and device damage."),
 			    choices:			[{label:$L("Ok"), value:'ok'}, {label:$L("Cancel"), value:'cancel'}],
 				onChoose:			this.newConfCall.bindAsEventListener(this)
 		    });
