@@ -1,0 +1,226 @@
+#main {
+	background: #666;
+}
+#main .main-list .main-item {
+	padding-left: 0px;
+}
+
+#main .main-list .icon {
+	width: 64px;
+	height: 44px;
+	line-height: 46px;
+	vertical-align: middle;
+	margin: -10px 2px -10px 0;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+	color: #666;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+#main .main-list .icon.filter {
+	background-image: url(../images/icon-filter.png);
+}
+#main .main-list .icon.app {
+	background-image: url(../images/icon-app.png);
+}
+#main .main-list .icon.get {
+	background-image: url(../images/icon-get.png);
+}
+#main .main-list .icon.tail {
+	background-image: url(../images/icon-tail.png);
+}
+#main .main-list .icon.worm {
+	background-image: url(../images/icon-worm2.png);
+}
+#main .main-list .icon.bus {
+	background-image: url(../images/icon-bus.png);
+}
+#main .main-list .arrow {
+	margin: -8px 8px -10px 0;
+}
+
+.filter-popup-scrim {
+	background: none;
+}
+.filter-popup {
+	margin-top: -15px;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 0.5s;
+	opacity: 0;
+}
+.filter-popup.open {
+	opacity: 1;
+}
+.filter-popup.nopeek {
+	margin-top: 0px;
+	background: #aeaeae;
+	border-width: 0;
+}
+.filter-popup.nopeek .top-row {
+	position: absolute;
+	width: 320px;
+	top: -46px;
+	padding-left: 0px;
+	background: #d8d8d8;
+}
+.filter-popup.nopeek.noblank .top-row {
+	position: absolute;
+	width: 320px;
+	top: -46px;
+	padding-left: 0px;
+	background: #d8d8d8 url(../images/popup-right.png) top right repeat-y;
+}
+
+.filter-popup.nopeek.noblank .noblank-fade {
+	pointer-events: none;
+	z-index: 2;
+	position: absolute;
+	right: 0px;
+	height: 100%;
+	width: 21px;
+	background: url(../images/popup-right.png) top right repeat-y;
+}
+.filter-popup.nopeek .top-bottom-fade {
+	pointer-events: none;
+	z-index: 2;
+	position: absolute;
+	height: 21px;
+	width: 320px;
+	top: 0px;
+	background: url(../images/popup-row-bottom.png) top left repeat-x;
+}
+.filter-popup .enyo-input-input {
+	color: #333 !important;
+}
+.filter-popup .enyo-input-input::-webkit-input-placeholder {
+	color: #333;
+}
+.filter-popup .enyo-scrollfades-top {
+	background: url(../images/popup-scrollfade-top.png) top center repeat-x;
+}
+.filter-popup .enyo-scrollfades-bottom {
+	background: url(../wi/images/preferences-scrollfade-bottom.png) bottom center repeat-x;
+}
+.filter-popup.nopeek .enyo-scrollfades-top {
+	background: none;
+}
+.filter-popup.nopeek .enyo-scrollfades-bottom {
+	background: url(../images/popup-scrollfade-bottom.png) bottom center repeat-x;
+}
+
+
+#main .tag {
+	position: absolute;
+	z-index: 3;
+	background: url(../images/sliding-tag.png) right center no-repeat;
+	height: 50px;
+	width: 26px;
+	left: -26px;
+	margin-top: -2px;
+}
+
+#main .blank-slider .enyo-sliding-view-shadow {
+	left: 0;
+	background-image: url(../images/blank-sliding-shadow.png);
+}
+#main .blank-slider .enyo-vflexbox {
+	background: #666 url(../images/blank-icon.png) center center no-repeat;
+}
+#main .blank-slider .enyo-vflexbox .centered {
+	font-size: 0.7em;
+	margin-top: 160px;
+	color: #999;
+}
+
+.header .enyo-grabbutton {
+	top: 0px;
+}
+.header .title {
+	padding-left: 35px;
+}
+.header .enyo-button-negative {
+	margin: -10px 0px;
+}
+
+
+.log .large-spinner {
+	margin: 200px auto 0 auto;
+}
+
+.logItem {
+	background-repeat: repeat-y;
+	background-position-x: right;
+}
+.logItem .type {
+	position: absolute;
+	
+	font-weight: bold;
+	padding-left: 15px;
+	background-repeat: no-repeat;
+	background-position-x: 0px;
+	background-position-y: center;
+	
+	height: 20px;
+	line-height: 15px;
+	
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.logItem .app {
+	position: absolute;
+	right: 0px;
+	display: none;
+	height: 20px;
+	line-height: 15px;
+	padding-right: 15px;
+}
+.logItem.showapp .app {
+	display: block;
+}
+.logItem .message {
+	margin-top: 24px;
+	word-wrap: break-word !important;
+}
+.logItem.none .type {
+	display: none;
+}
+.logItem.info .type,
+.logItem.debug .type,
+.logItem.notice .type {
+	color: #3473e7;
+	background-image: url(../images/log-info-icon.png);
+}
+.logItem.alert .type,
+.logItem.warning .type {
+	color: #ffa202;
+	background-image: url(../images/log-warning-icon.png);
+}
+.logItem.err .type,
+.logItem.emerg .type,
+.logItem.crit .type {
+	color: #f10000;
+	background-image: url(../images/log-error-icon.png);
+}
+.logItem.info,
+.logItem.debug,
+.logItem.call,
+.logItem.notice {
+	background-image: url(../images/log-blue-bg.png);
+}
+.logItem.alert,
+.logItem.warning {
+	background-image: url(../images/log-yellow-bg.png);
+}
+.logItem.err,
+.logItem.emerg,
+.logItem.crit {
+	background-image: url(../images/log-red-bg.png);
+}
+.logItem.return {
+	background-image: url(../images/log-green-bg.png);
+}
+
+
